@@ -1,6 +1,6 @@
 # Self-Supervised-Diffusion
 ## Steps to generate the images
-First change the line 29,36,37 to train path of the required dataset train path. Then run the following command
+First change the line 29,36,37 imagenet_aug.py to train path of the required dataset train path. Then run the following command
 ```shell
 python test.py
 ```
