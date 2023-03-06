@@ -32,6 +32,6 @@ class ValAugmentation(Dataset):
         path =  self.samples[idx]
         target = self.target[idx]
         img = Image.open(path).convert('RGB')
-        img = self.transform(img)
-
-        return img,torch.tensor(target, dtype=torch.long),torch.tensor(target, dtype=torch.long)
+        img_t = self.transform(img)
+        img_t1 = self.transform(img)
+        return [img_t,img_t1],torch.tensor(target, dtype=torch.long),torch.tensor(target, dtype=torch.long)

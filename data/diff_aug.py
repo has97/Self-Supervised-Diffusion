@@ -4,10 +4,18 @@ from torch.utils.data import Dataset, DataLoader
 import os
 from PIL import Image
 import torch
+import lightly
+# normalize_transform = transforms.Normalize(
+#     mean=lightly.data.collate.imagenet_normalize["mean"],
+#     std=lightly.data.collate.imagenet_normalize["std"],
+# )
+normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                 std=[0.229, 0.224, 0.225])
 transformer = transforms.Compose(
     [
-        transforms.Resize(128),
+        transforms.Resize(224),
         transforms.ToTensor(),
+         normalize,
     ]
 )
 class TrainAugmentation(Dataset):
@@ -38,11 +46,15 @@ class TrainAugmentation(Dataset):
     def __getitem__(self, idx):
         path =  self.samples[idx]
         target = self.target[idx]
-        p = random.randint(0, 1)
+        p = random.randint(0, 5)
+        r = random.randint(0, 1)
         s = path.split('/')
-        path1 = '../diffimage/'+s[-2]+'/'+s[-1]+'/img'+str(p)+'.jpg'
+        # path1 = '../diffimagenet_1/diffimage/'+s[-2]+'/'+s[-1]+'/img'+str(p)+'.jpg'
         img = Image.open(path).convert('RGB')
-        img1 = Image.open(path1).convert('RGB')
-        img = self.transform(img)
-        img1 = transformer(img1)
-        return (img,img1),torch.tensor(target, dtype=torch.long),torch.tensor(target, dtype=torch.long)
+        # img1 = Image.open(path1).convert('RGB')
+        img_t = self.transform(img)
+        # if r==0:
+        #     img1_t = transformer(img1)
+        # else:
+        img1_t = self.transform(img)
+        return [img_t,img1_t],torch.tensor(target, dtype=torch.long),torch.tensor(target, dtype=torch.long)

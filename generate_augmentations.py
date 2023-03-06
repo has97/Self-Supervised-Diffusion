@@ -11,7 +11,7 @@ import torchvision.transforms as transforms
 # from xformers.ops import MemoryEfficientAttentionFlashAttentionOp
 class Augmentation(nn.Module):
     pipe = None 
-    def __init__(self,strength=0.1,guidance=0.75,prompt=["High detail 4K Photo of the image"]*2,diff_steps=50):
+    def __init__(self,strength=0.06,guidance=3,prompt=["Sketch of the image"],diff_steps=50):
         super(Augmentation, self).__init__()
         self.pipe = StableDiffusionImg2ImgPipeline.from_pretrained("runwayml/stable-diffusion-v1-5").to("cuda:1")
         # self.pipe =  StableDiffusionImageVariationPipeline.from_pretrained("lambdalabs/sd-image-variations-diffusers",revision="v2.0").to("cuda:1")
@@ -33,12 +33,12 @@ class Augmentation(nn.Module):
         # L=[]
         # for i in range(3)
         # canvas = image.resize((512, 512), Image.BILINEAR)
-        canvas = image
+        canvas = image.unsqueeze(0)
         # for i in range(3):
         with autocast(device_type='cuda', dtype=torch.float16):
                 # with autocast(device_type='cuda', dtype=torch.float16):
                 # print("here")
-                out = self.pipe(prompt=self.prompt, image=canvas, strength=self.strength,guidance_scale=self.guidance_scale,num_inference_steps=self.num_inference_steps,num_images_per_prompt=2).images
+                out = self.pipe(prompt=self.prompt, image=canvas, strength=self.strength,guidance_scale=self.guidance_scale,num_inference_steps=self.num_inference_steps,num_images_per_prompt=6).images
                 # out = self.pipe(image=canvas,guidance_scale=self.guidance_scale,num_inference_steps=self.num_inference_steps).images[0]
         # for i in range(3):
         #     out[i] = out[i].resize(image.size, Image.BILINEAR)
