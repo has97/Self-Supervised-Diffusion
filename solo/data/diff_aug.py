@@ -49,12 +49,14 @@ class TrainAugmentation(Dataset):
         p = random.randint(0, 5)
         r = random.randint(0, 1)
         s = path.split('/')
-        path1 = '../diffimage/'+s[-2]+'/'+s[-1]+'/img'+str(p)+'.jpg'
+        path1 = '~/diffimagenet_1/diffimage/'+s[-2]+'/'+s[-1]+'/img'+str(p)+'.jpg'
         img = Image.open(path).convert('RGB')
         img1 = Image.open(path1).convert('RGB')
         img_t = self.transform(img)
+        print(img_t.shape)
         # if r==0:
         img1_t = transformer(img1)
         # else:
-        img_t[1]=img1_t
-        return idx,img_t,torch.tensor(target, dtype=torch.long)
+        # img1_t = self.transform(img)
+        img_t.extend(img1_t)
+        return img_t,torch.tensor(target, dtype=torch.long)
