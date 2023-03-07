@@ -9,15 +9,15 @@ import lightly
 #     mean=lightly.data.collate.imagenet_normalize["mean"],
 #     std=lightly.data.collate.imagenet_normalize["std"],
 # )
-normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                 std=[0.229, 0.224, 0.225])
-transformer = transforms.Compose(
-    [
-        transforms.Resize(224),
-        transforms.ToTensor(),
-         normalize,
-    ]
-)
+# normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
+#                                  std=[0.229, 0.224, 0.225])
+# transformer = transforms.Compose(
+#     [
+#         transforms.Resize(224),
+#         transforms.ToTensor(),
+#          normalize,
+#     ]
+# )
 class TrainAugmentation(Dataset):
 
     def __init__(self, root_train_dir, transform=None):
@@ -52,9 +52,9 @@ class TrainAugmentation(Dataset):
         path1 = '../diffimage/'+s[-2]+'/'+s[-1]+'/img'+str(p)+'.jpg'
         img = Image.open(path).convert('RGB')
         img1 = Image.open(path1).convert('RGB')
-        img_t = self.transform(img)
-        # if r==0:
-        img1_t = transformer(img1)
-        # else:
-        img_t[1]=img1_t
-        return idx,img_t,torch.tensor(target, dtype=torch.long)
+        # img_t = self.transform(img)
+        if r==0:
+            img1_t = self.transform(img1)
+        else:
+            img1_t=   self.transform(img)
+        return img1_t,torch.tensor(target, dtype=torch.long)

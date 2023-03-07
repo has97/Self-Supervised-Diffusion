@@ -130,13 +130,22 @@ def main(cfg: DictConfig):
         )
         dali_datamodule.val_dataloader = lambda: val_loader
     else:
+        t=0
         pipelines = []
         for aug_cfg in cfg.augmentations:
-            pipelines.append(
-                NCropAugmentation(
-                    build_transform_pipeline(cfg.data.dataset, aug_cfg), aug_cfg.num_crops
+            if t==1:
+                pipelines.append(
+                    NCropAugmentation(
+                        build_transform_pipeline("diffusion", aug_cfg), aug_cfg.num_crops
+                    )
                 )
-            )
+            else:
+                pipelines.append(
+                    NCropAugmentation(
+                        build_transform_pipeline(cfg.data.dataset, aug_cfg), aug_cfg.num_crops
+                    )
+                )
+            t+=1
         transform = FullTransformPipeline(pipelines)
 
         if cfg.debug_augmentations:
