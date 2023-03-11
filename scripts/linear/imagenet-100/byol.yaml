@@ -11,14 +11,14 @@ hydra:
     dir: .
 
 name: "byol-imagenet100-linear"
-pretrained_feature_extractor: None
+pretrained_feature_extractor: "./trained_models/byol/icv7reb3/byol-imagenet100-icv7reb3-ep=399.ckpt"
 backbone:
   name: "resnet18"
 pretrain_method: "byol"
 data:
   dataset: imagenet100
-  train_path: "./datasets/imagenet-100/train"
-  val_path: "./datasets/imagenet-100/val"
+  train_path: "../ImageNet100/train"
+  val_path: "../ImageNet100/val"
   format: "dali"
   num_workers: 4
 optimizer:
@@ -38,7 +38,7 @@ auto_resume:
 
 # overwrite PL stuff
 max_epochs: 100
-devices: [0]
+devices: [1]
 sync_batchnorm: True
 accelerator: "gpu"
 strategy: "ddp"

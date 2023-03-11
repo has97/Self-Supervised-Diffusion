@@ -154,11 +154,11 @@ class NCropAugmentation:
         return f"{self.num_crops} x [{self.transform}]"
 
 
-class FullTransformPipeline:
+class FullTransformPipeline:# changeed here check
     def __init__(self, transforms: Callable) -> None:
         self.transforms = transforms
 
-    def __call__(self, x: Image) -> List[torch.Tensor]:
+    def __call__(self, x: Image, y:Image) -> List[torch.Tensor]:
         """Applies transforms n times to generate n crops.
 
         Args:
@@ -169,8 +169,15 @@ class FullTransformPipeline:
         """
 
         out = []
+        t=0
+        # print(len(self.transforms))
         for transform in self.transforms:
-            out.extend(transform(x))
+            if t==0:
+                out.extend(transform(x))
+            else:
+                # print("finally here")
+                out.extend(transform(y))
+            t+=1
         return out
 
     def __repr__(self) -> str:

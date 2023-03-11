@@ -42,11 +42,11 @@ scheduler:
   name: "warmup_cosine"
 checkpoint:
   enabled: True
-  dir: "trained_models"
+  dir: "./trained_models"
   frequency: 1
 auto_resume:
-  enabled: True
-
+  enabled: False
+# resume_from_checkpoint: "./trained_models/byol/dkhcae6j/byol-imagenet100-dkhcae6j-ep=16.ckpt"
 # overwrite PL stuff
 max_epochs: 400
 devices: [1]

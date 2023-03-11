@@ -38,7 +38,7 @@ class TrainAugmentation(Dataset):
                 self.target.append(self.class_id_to_name[j])
         # self.root_dir = root_dir
         self.transform = transform
-        self.transform1 = transformer
+        # self.transform1 = transformer
 
     def __len__(self):
         return len(self.samples)
@@ -52,9 +52,12 @@ class TrainAugmentation(Dataset):
         path1 = '../diffimage/'+s[-2]+'/'+s[-1]+'/img'+str(p)+'.jpg'
         img = Image.open(path).convert('RGB')
         img1 = Image.open(path1).convert('RGB')
-        # img_t = self.transform(img)
+        img_t = img
         if r==0:
-            img1_t = self.transform(img1)
+            img1_t = img1
+            # print("diffusion loaded!!:))")
         else:
-            img1_t=   self.transform(img)
-        return img1_t,torch.tensor(target, dtype=torch.long)
+            img1_t=  img
+        n_img=self.transform(img_t,img1_t)
+        
+        return n_img,torch.tensor(target, dtype=torch.long)
