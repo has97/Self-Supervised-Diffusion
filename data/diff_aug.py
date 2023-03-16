@@ -29,8 +29,13 @@ class TrainAugmentation(Dataset):
         t=0
         for x in os.listdir(root_train_dir):
             self.class_names.append(x)
-            self.class_id_to_name[x]=t
-            self.class_name_to_id[t]=x
+            # self.class_id_to_name[x]=t
+            # self.class_name_to_id[t]=x
+            # t+=1
+        self.class_names.sort()
+        for i in self.class_names:
+            self.class_id_to_name[i]=t
+            self.class_name_to_id[t]=i
             t+=1
         for j in self.class_names:
             for k in os.listdir(root_train_dir+'/'+j):
@@ -58,6 +63,7 @@ class TrainAugmentation(Dataset):
             # print("diffusion loaded!!:))")
         else:
             img1_t=  img
+        # img1_t = img
         n_img=self.transform(img_t,img1_t)
         
         return n_img,torch.tensor(target, dtype=torch.long)
