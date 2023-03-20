@@ -13,7 +13,7 @@ This repo is build on solo repositry: https://github.com/vturrisi/solo-learn
 conda create -n ssl-diff python=3.7
 conda activate ssl-diff
 ```
-- Then install all the required libraries using the pip command in the repositry.
+- Then install all the required libraries using the pip command in the repositry https://github.com/vturrisi/solo-learn.
 ## Changing the YAML file for the required datasets
 - Go to the scripts/pretrain/imagenet-100/model_name.yaml and change the train_path , val_path to the required directory of training images and validation images.
 - Then run the following command for training and linear evaluation.
