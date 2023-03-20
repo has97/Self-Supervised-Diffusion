@@ -15,7 +15,7 @@ conda activate ssl-diff
 ```
 - Then install all the required libraries using the pip command in the repositry https://github.com/vturrisi/solo-learn.
 ## Changing the YAML file for the required datasets
-- Go to the scripts/pretrain/imagenet-100/model_name.yaml and change the train_path , val_path to the required directory of training images and validation images.
+- Go to the scripts/pretrain/imagenet-100/model_name.yaml and change the train_path , val_path [https://github.com/has97/Self-Supervised-Diffusion/blob/04e2315dad01366b5100d2bc4309501968bdc1e6/scripts/pretrain/imagenet-100/byol.yaml#L27](line) to the required directory of training images and validation images.
 - Then run the following command for training and linear evaluation.
 
 To train the model use the following command.
