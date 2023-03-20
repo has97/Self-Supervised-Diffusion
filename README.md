@@ -7,13 +7,14 @@ python test.py
 Then the images will be generated in folder named diffimage which is outside the current folder
 This repo is build on solo repositry: https://github.com/vturrisi/solo-learn
 ## Steps to setup the environment
-- Go to the repositry https://github.com/vturrisi/solo-learn and then enter the solo-learn directory.
+- Go to the repositry and clone https://github.com/vturrisi/solo-learn and then enter the solo-learn directory.
 - Then create a new environment using the following command 
 ```shell
 conda create -n ssl-diff python=3.7
 conda activate ssl-diff
 ```
 - Then install all the required libraries using the pip command in the repositry https://github.com/vturrisi/solo-learn.
+- Then enter to this repo.
 ## Changing the YAML file for the required datasets
 - Go to the scripts/pretrain/imagenet-100/model_name.yaml and change the train_path , val_path [line](https://github.com/has97/Self-Supervised-Diffusion/blob/04e2315dad01366b5100d2bc4309501968bdc1e6/scripts/pretrain/imagenet-100/byol.yaml#L27) to the required directory of training images and validation images.
 - Then run the following command for training and linear evaluation.
