@@ -1,4 +1,12 @@
+<div>
 # Self-Supervised-Diffusion
+  [![Conference](https://img.shields.io/badge/ICASSP-2024-4b44ce)](https://2024.ieeeicassp.org/)
+
+<a href="https://www.python.org"><img alt="Python" src="https://img.shields.io/badge/-Python_3.7-blue?logo=python&logoColor=white"></a>
+<a href="https://pytorch.org/get-started/locally/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch_1.10-ee4c2c?logo=pytorch&logoColor=white"></a>
+<a href="https://pytorchlightning.ai/"><img alt="Lightning" src="https://img.shields.io/badge/-Lightning_2.1.2-792ee5?logo=pytorchlightning&logoColor=white"></a>
+
+</div>
 ## Steps to generate the images
 First change the line 29,36,37 imagenet_aug.py to train path of the required dataset train path. Then run the following command
 ```shell
