@@ -1,5 +1,7 @@
+<div align="center">
+#  ENHANCING THE DOMAIN ROBUSTNESS OF SELF-SUPERVISED PRE-TRAINING WITH SYNTHETIC IMAGES
+</div>
 
-# Self-Supervised-Diffusion
 [![Conference](https://img.shields.io/badge/ICASSP-2024-4b44ce)](https://2024.ieeeicassp.org/)
 
 <a href="https://www.python.org"><img alt="Python" src="https://img.shields.io/badge/-Python_3.7-blue?logo=python&logoColor=white"></a>
